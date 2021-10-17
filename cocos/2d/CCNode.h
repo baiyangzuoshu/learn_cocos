@@ -123,6 +123,7 @@ public:
     /// @name Constructor, Destructor and Initializers
 
     /**
+	二段构建函数
      * Allocates and initializes a node.
      * @return A initialized node which is marked as "autorelease".
      */
@@ -135,6 +136,7 @@ public:
 public:
     
     /**
+	获取节点描述
      * Gets the description string. It makes debugging easier.
      * @return A string
      * @js NA
@@ -150,6 +152,7 @@ public:
     /// @name Setters & Getters for Graphic Properties
 
     /**
+	设置本地渲染顺序
      LocalZOrder is the 'key' used to sort the node relative to its siblings.
 
      The Node's parent will sort all its children based on the LocalZOrder value.
@@ -175,6 +178,7 @@ public:
     virtual void _setLocalZOrder(std::int32_t z);
 
     /** !!! ONLY FOR INTERNAL USE
+	更新全局ZOrder
     * Sets the arrival order when this node has a same ZOrder with other children.
     *
     * A node which called addChild subsequently will take a larger arrival order,
@@ -187,6 +191,7 @@ public:
     void updateOrderOfArrival();
 
     /**
+	获取本地渲染顺序
      * Gets the local Z order of this node.
      *
      * @see `setLocalZOrder(int)`
@@ -199,6 +204,7 @@ public:
     CC_DEPRECATED_ATTRIBUTE virtual std::int32_t getZOrder() const { return getLocalZOrder(); }
 
     /**
+	设置全局ZOrder
      Defines the order in which the nodes are renderer.
      Nodes that have a Global Z Order lower, are renderer first.
      
@@ -230,6 +236,7 @@ public:
     virtual float getGlobalZOrder() const { return _globalZOrder; }
 
     /**
+	设置X缩放因子
      * Sets the scale (x) of the node.
      *
      * It is a scaling factor that multiplies the width of the node and its children.
@@ -240,6 +247,7 @@ public:
      */
     virtual void setScaleX(float scaleX);
     /**
+	获取X缩放因子
      * Returns the scale factor on X axis of this node
      *
      * @see setScaleX(float)
@@ -250,6 +258,7 @@ public:
 
 
     /**
+	设置Y缩放因子
      * Sets the scale (y) of the node.
      *
      * It is a scaling factor that multiplies the height of the node and its children.
@@ -260,6 +269,7 @@ public:
      */
     virtual void setScaleY(float scaleY);
     /**
+	获取Y缩放因子
      * Returns the scale factor on Y axis of this node
      *
      * @see `setScaleY(float)`
@@ -269,6 +279,7 @@ public:
     virtual float getScaleY() const;
 
     /**
+	设置Z缩放因子
      * Changes the scale factor on Z axis of this node
      *
      * The Default value is 1.0 if you haven't changed it before.
@@ -279,6 +290,7 @@ public:
      */
     virtual void setScaleZ(float scaleZ);
     /**
+	获取Z缩放因子
      * Returns the scale factor on Z axis of this node
      *
      * @see `setScaleZ(float)`
@@ -289,6 +301,7 @@ public:
 
 
     /**
+	设置缩放因子
      * Sets the scale (x,y,z) of the node.
      *
      * It is a scaling factor that multiplies the width, height and depth of the node and its children.
@@ -299,6 +312,7 @@ public:
      */
     virtual void setScale(float scale);
     /**
+	获取缩放因子
      * Gets the scale factor of the node,  when X and Y have the same scale factor.
      *
      * @warning Assert when `_scaleX != _scaleY`
@@ -309,6 +323,7 @@ public:
     virtual float getScale() const;
 
      /**
+	 设置X、Y缩放因子
      * Sets the scale (x,y) of the node.
      *
      * It is a scaling factor that multiplies the width and height of the node and its children.
@@ -321,6 +336,7 @@ public:
     virtual void setScale(float scaleX, float scaleY);
 
     /**
+	设置位置
      * Sets the position (x,y) of the node in its parent's coordinate system.
      *
      * Usually we use `Vec2(x,y)` to compose Vec2 object.
@@ -351,6 +367,7 @@ public:
     virtual void setNormalizedPosition(const Vec2 &position) { setPositionNormalized(position); }
 
     /**
+	获取位置
      * Gets the position (x,y) of the node in its parent's coordinate system.
      *
      * @see setPosition(const Vec2&)
@@ -465,6 +482,7 @@ public:
     CC_DEPRECATED_ATTRIBUTE virtual float getVertexZ() const { return getPositionZ(); }
 
     /**
+	设置X斜角
      * Changes the X skew angle of the node in degrees.
      *
      * The difference between `setRotationalSkew()` and `setSkew()` is that the first one simulate Flash's skew functionality
@@ -480,6 +498,7 @@ public:
      */
     virtual void setSkewX(float skewX);
     /**
+	获取X斜角
      * Returns the X skew angle of the node in degrees.
      *
      * @see `setSkewX(float)`
@@ -490,6 +509,7 @@ public:
 
 
     /**
+	设置Y斜角
      * Changes the Y skew angle of the node in degrees.
      *
      * The difference between `setRotationalSkew()` and `setSkew()` is that the first one simulate Flash's skew functionality
@@ -505,6 +525,7 @@ public:
      */
     virtual void setSkewY(float skewY);
     /**
+	获取Y斜角
      * Returns the Y skew angle of the node in degrees.
      *
      * @see `setSkewY(float)`
@@ -515,6 +536,7 @@ public:
 
 
     /**
+	设置锚点
      * Sets the anchor point in percent.
      *
      * anchorPoint is the point around which all transformations and positioning manipulations take place.
@@ -528,6 +550,7 @@ public:
      */
     virtual void setAnchorPoint(const Vec2& anchorPoint);
     /**
+	获取锚点
      * Returns the anchor point in percent.
      *
      * @see `setAnchorPoint(const Vec2&)`
@@ -536,6 +559,7 @@ public:
      */
     virtual const Vec2& getAnchorPoint() const;
     /**
+	获取锚点的位置
      * Returns the anchorPoint in absolute pixels.
      *
      * @warning You can only read it. If you wish to modify it, use anchorPoint instead.
@@ -547,6 +571,7 @@ public:
 
 
     /**
+	设置未转换的节点大小
      * Sets the untransformed size of the node.
      *
      * The contentSize remains the same no matter the node is scaled or rotated.
@@ -556,6 +581,7 @@ public:
      */
     virtual void setContentSize(const Size& contentSize);
     /**
+	获取未转换的节点大小
      * Returns the untransformed size of the node.
      *
      * @see `setContentSize(const Size&)`
@@ -566,6 +592,7 @@ public:
 
 
     /**
+	设置节点是否可见
      * Sets whether the node is visible.
      *
      * The default value is true, a node is default to visible.
@@ -574,6 +601,7 @@ public:
      */
     virtual void setVisible(bool visible);
     /**
+	节点是否可见
      * Determines if the node is visible.
      *
      * @see `setVisible(bool)`
@@ -584,6 +612,7 @@ public:
 
 
     /**
+	设置旋转角度
      * Sets the rotation (angle) of the node in degrees.
      *
      * 0 is the default rotation angle.
@@ -593,6 +622,7 @@ public:
      */
     virtual void setRotation(float rotation);
     /**
+	获取旋转角度
      * Returns the rotation of the node in degrees.
      *
      * @see `setRotation(float)`
@@ -702,6 +732,7 @@ public:
     CC_DEPRECATED_ATTRIBUTE int getGLServerState() const { return 0; }
 
     /**
+	设置是否忽略锚点的影响
      * Sets whether the anchor point will be (0,0) when you position this node.
      *
      * This is an internal method, only used by Layer and Scene. Don't call it outside framework.
@@ -713,6 +744,7 @@ public:
     CC_DEPRECATED_ATTRIBUTE virtual void ignoreAnchorPointForPosition(bool ignore) { setIgnoreAnchorPointForPosition(ignore); }
     
     /**
+	获取是否忽略锚点的影响
      * Gets whether the anchor point will be (0,0) when you position this node.
      *
      * @see `setIgnoreAnchorPointForPosition(bool)`
@@ -728,6 +760,7 @@ public:
     /// @name Children and Parent
 
     /**
+	节点加入
      * Adds a child to the container with z-order as 0.
      *
      * If the child is added to a 'running' node, then 'onEnter' and 'onEnterTransitionDidFinish' will be called immediately.
@@ -768,6 +801,7 @@ public:
      */
     virtual void addChild(Node* child, int localZOrder, const std::string &name);
     /**
+	根据tag获取节点
      * Gets a child from the container with its tag.
      *
      * @param tag   An identifier to find the child node.
@@ -789,6 +823,7 @@ public:
     T getChildByTag(int tag) const { return static_cast<T>(getChildByTag(tag)); }
     
     /**
+	根据字符串获取节点
      * Gets a child from the container with its name.
      *
      * @param name   An identifier to find the child node.
@@ -836,6 +871,7 @@ public:
      */
     virtual void enumerateChildren(const std::string &name, std::function<bool(Node* node)> callback) const;
     /**
+	获取子节点数组
      * Returns the array of the node's children.
      *
      * @return the array the node's children.
@@ -844,6 +880,7 @@ public:
     virtual const Vector<Node*>& getChildren() const { return _children; }
     
     /** 
+	获取子节点数量
      * Returns the amount of children.
      *
      * @return The amount of children.
@@ -851,12 +888,14 @@ public:
     virtual ssize_t getChildrenCount() const;
 
     /**
+	设置父节点
      * Sets the parent node.
      *
      * @param parent    A pointer to the parent node.
      */
     virtual void setParent(Node* parent);
     /**
+	获取父节点
      * Returns a pointer to the parent node.
      *
      * @see `setParent(Node*)`
@@ -870,12 +909,14 @@ public:
     ////// REMOVES //////
 
     /**
+	从父结点删除自己
      * Removes this node itself from its parent node with a cleanup.
      * If the node orphan, then nothing happens.
      * @see `removeFromParentAndCleanup(bool)`
      */
     virtual void removeFromParent();
     /**
+	从父结点删除自己并且调用cleanup()函数
      * Removes this node itself from its parent node.
      * If the node orphan, then nothing happens.
      * @param cleanup   true if all actions and callbacks on this node should be removed, false otherwise.
@@ -885,6 +926,7 @@ public:
     virtual void removeFromParentAndCleanup(bool cleanup);
 
     /**
+	删除子节点
      * Removes a child from the container. It will also cleanup all running actions depending on the cleanup parameter.
      *
      * @param child     The child node which will be removed.
@@ -893,6 +935,7 @@ public:
     virtual void removeChild(Node* child, bool cleanup = true);
 
     /**
+	根据tag删除子节点
      * Removes a child from the container by tag value. It will also cleanup all running actions depending on the cleanup parameter.
      *
      * @param tag       An integer number that identifies a child node.
@@ -902,6 +945,7 @@ public:
      */
      virtual void removeChildByTag(int tag, bool cleanup = true);
     /**
+	根据name删除子节点
      * Removes a child from the container by tag value. It will also cleanup all running actions depending on the cleanup parameter.
      *
      * @param name       A string that identifies a child node.
@@ -909,12 +953,14 @@ public:
      */
     virtual void removeChildByName(const std::string &name, bool cleanup = true);
     /**
+	删除所有子节点
      * Removes all children from the container with a cleanup.
      *
      * @see `removeAllChildrenWithCleanup(bool)`
      */
     virtual void removeAllChildren();
     /**
+	删除所有子节点以及是否调用cleanup()函数
      * Removes all children from the container, and do a cleanup to all running actions depending on the cleanup parameter.
      *
      * @param cleanup   True if all running actions on all children nodes should be cleanup, false otherwise.
@@ -924,6 +970,7 @@ public:
     virtual void removeAllChildrenWithCleanup(bool cleanup);
 
     /**
+	设置节点本地ZOrder
      * Reorders a child according to a new z value.
      *
      * @param child     An already added child node. It MUST be already added.
@@ -932,6 +979,7 @@ public:
     virtual void reorderChild(Node * child, int localZOrder);
 
     /**
+	排序所有子节点
      * Sorts the children array once before drawing, instead of every time when a child is added or reordered.
      * This approach can improve the performance massively.
      * @note Don't call this manually unless a child added needs to be removed in the same frame.
@@ -939,6 +987,7 @@ public:
     virtual void sortAllChildren();
 
     /**
+	排序子节点，_localZOrder、_orderOfArrival排序因子，_globalZOrder因子在RenderQueue:sort()函数中
     * Sorts helper function
     *
     */
@@ -963,6 +1012,7 @@ public:
     /// @name Tag & User data
 
     /**
+	获取tag
      * Returns a tag that is used to identify the node easily.
      *
      * @return An integer that identifies the node.
@@ -971,6 +1021,7 @@ public:
      */
      virtual int getTag() const;
     /**
+	设置tag
      * Changes the tag that is used to identify the node easily.
      *
      * Please refer to getTag for the sample code.
@@ -981,13 +1032,17 @@ public:
      */
      virtual void setTag(int tag);
     
-    /** Returns a string that is used to identify the node.
+    /** 
+	获取name
+	Returns a string that is used to identify the node.
      * @return A string that identifies the node.
      * 
      * @since v3.2
      */
     virtual const std::string& getName() const;
-    /** Changes the name that is used to identify the node easily.
+    /** 
+	设置name
+	Changes the name that is used to identify the node easily.
      * @param name A string that identifies the node.
      *
      * @since v3.2
@@ -996,6 +1051,7 @@ public:
 
     
     /**
+	获取数据指针
      * Returns a custom user data pointer.
      *
      * You can set everything in UserData pointer, a data block, a structure or an object.
@@ -1005,11 +1061,13 @@ public:
      */
     virtual void* getUserData() { return _userData; }
     /**
+	
     * @lua NA
     */
     virtual const void* getUserData() const { return _userData; }
 
     /**
+	设置数据指针
      * Sets a custom user data pointer.
      *
      * You can set everything in UserData pointer, a data block, a structure or an object, etc.
@@ -1022,6 +1080,7 @@ public:
     virtual void setUserData(void *userData);
 
     /**
+	获取用户节点
      * Returns a user assigned Object.
      *
      * Similar to userData, but instead of holding a void* it holds an object.
@@ -1036,6 +1095,7 @@ public:
     virtual const Ref* getUserObject() const { return _userObject; }
 
     /**
+	设置用户节点
      * Returns a user assigned Object.
      *
      * Similar to UserData, but instead of holding a void* it holds an object.
@@ -1090,6 +1150,7 @@ public:
 
 
     /**
+	是否正在运行
      * Returns whether or not the node is "running".
      *
      * If the node is running it will accept event callbacks like onEnter(), onExit(), update().
@@ -1099,6 +1160,7 @@ public:
     virtual bool isRunning() const;
 
     /**
+
      * Schedules for lua script.
      * @js NA
      *
@@ -1114,6 +1176,7 @@ public:
     /// @name Event Callbacks
 
     /**
+	每当节点被addChild时，父节点_running为true时，会调用节点的onEnter。Scene的_running属性为true
      * Event callback that is invoked every time when Node enters the 'stage'.
      * If the Node enters the 'stage' with a transition, this event is called when the transition starts.
      * During onEnter you can't access a "sister/brother" node.
@@ -1122,7 +1185,9 @@ public:
      */
     virtual void onEnter();
 
-    /** Event callback that is invoked when the Node enters in the 'stage'.
+    /** 
+	每当节点被addChild时，父节点_running、_isTransitionFinished为true时，会调用节点的onEnterTransitionDidFinish。Scene的_running属性为true
+	Event callback that is invoked when the Node enters in the 'stage'.
      * If the Node enters the 'stage' with a transition, this event is called when the transition finishes.
      * If you override onEnterTransitionDidFinish, you shall call its parent's one, e.g. Node::onEnterTransitionDidFinish()
      * @lua NA
@@ -1130,6 +1195,7 @@ public:
     virtual void onEnterTransitionDidFinish();
 
     /**
+	当节点被父节点移除时，父节点_running为true会调用onExit()、onExitTransitionDidStart()
      * Event callback that is invoked every time the Node leaves the 'stage'.
      * If the Node leaves the 'stage' with a transition, this event is called when the transition finishes.
      * During onExit you can't access a sibling node.
@@ -1149,11 +1215,13 @@ public:
 
 
     /**
+	停止所有动作和调度器
      * Stops all running actions and schedulers
      */
     virtual void cleanup();
 
     /**
+	绘制
      * Override this method to draw your own node.
      * The following GL states will be enabled by default:
      * - `glEnableClientState(GL_VERTEX_ARRAY);`
@@ -1171,6 +1239,7 @@ public:
     virtual void draw() final;
 
     /**
+	遍历渲染
      * Visits this node's children and draw them recursively.
      *
      * @param renderer A given renderer.
@@ -1181,7 +1250,9 @@ public:
     virtual void visit() final;
 
 
-    /** Returns the Scene that contains the Node.
+    /**
+	获取场景，节点的顶端
+	Returns the Scene that contains the Node.
      It returns `nullptr` if the node doesn't belong to any Scene.
      This function recursively calls parent->getScene() until parent is a Scene object. The results are not cached. It is that the user caches the results in case this functions is being used inside a loop.
      *
@@ -1230,6 +1301,7 @@ public:
     virtual const ActionManager* getActionManager() const { return _actionManager; }
 
     /**
+	运行动作序列
      * Executes an action, and returns the action that is executed.
      *
      * This node becomes the action's target. Refer to Action::getTarget().
@@ -1240,11 +1312,13 @@ public:
     virtual Action* runAction(Action* action);
 
     /**
+	暂停所有动作
      * Stops and removes all actions from the running action list .
      */
     void stopAllActions();
 
     /**
+	暂停动作
      * Stops and removes an action from the running action list.
      *
      * @param action    The action object to be removed.
@@ -1252,6 +1326,7 @@ public:
     void stopAction(Action* action);
 
     /**
+	暂停tag动作
      * Removes an action from the running action list by its tag.
      *
      * @param tag   A tag that indicates the action to be removed.
@@ -1259,6 +1334,7 @@ public:
     void stopActionByTag(int tag);
     
     /**
+	暂停tag所有动作
      * Removes all actions from the running action list by its tag.
      *
      * @param tag   A tag that indicates the action to be removed.
@@ -1266,6 +1342,7 @@ public:
     void stopAllActionsByTag(int tag);
 
     /**
+	暂停flag动作
      * Removes all actions from the running action list by its flags.
      *
      * @param flags   A flag field that removes actions based on bitwise AND.
@@ -1273,6 +1350,7 @@ public:
     void stopActionsByFlags(unsigned int flags);
 
     /**
+	获取tag动作
      * Gets an action from the running action list by its tag.
      *
      * @see `setTag(int)`, `getTag()`.
@@ -1336,6 +1414,7 @@ public:
 
 
     /**
+
      * Checks whether a selector is scheduled.
      *
      * @param selector      A function selector
@@ -1356,6 +1435,7 @@ public:
     bool isScheduled(const std::string &key) const;
 
     /**
+	开启每帧update()函数
      * Schedules the "update" method.
      *
      * It will use the order number 0. This method will be called every frame.
@@ -1366,6 +1446,7 @@ public:
     void scheduleUpdate(void);
 
     /**
+	设置优先级开启每帧update()函数
      * Schedules the "update" method with a custom priority.
      *
      * This selector will be called every frame.
@@ -1623,6 +1704,7 @@ public:
     /// @name Coordinate Converters
 
     /**
+	世界坐标转换为本地坐标
      * Converts a Vec2 to node (local) space coordinates. The result is in Points.
      *
      * @param worldPoint A given coordinate.
@@ -1631,6 +1713,7 @@ public:
     Vec2 convertToNodeSpace(const Vec2& worldPoint) const;
 
     /**
+	本地坐标转换为世界坐标
      * Converts a Vec2 to world space coordinates. The result is in Points.
      *
      * @param nodePoint A given coordinate.
@@ -1639,6 +1722,7 @@ public:
     Vec2 convertToWorldSpace(const Vec2& nodePoint) const;
 
     /**
+	世界坐标转换为本地坐标，忽略锚点
      * Converts a Vec2 to node (local) space coordinates. The result is in Points.
      * treating the returned/received node point as anchor relative.
      *
@@ -1648,6 +1732,7 @@ public:
     Vec2 convertToNodeSpaceAR(const Vec2& worldPoint) const;
 
     /**
+	本地坐标转换世界坐标，忽略瞄点
      * Converts a local Vec2 to world space coordinates.The result is in Points.
      * treating the returned/received node point as anchor relative.
      *
@@ -1657,6 +1742,7 @@ public:
     Vec2 convertToWorldSpaceAR(const Vec2& nodePoint) const;
 
     /**
+	触摸点(世界坐标)转换为本地坐标
      * convenience methods which take a Touch instead of Vec2.
      *
      * @param touch A given touch.
@@ -1665,6 +1751,7 @@ public:
     Vec2 convertTouchToNodeSpace(Touch * touch) const;
 
     /**
+	触摸点(世界坐标)转换为本地坐标，忽略瞄点
      * converts a Touch (world coordinates) into a local coordinate. This method is AR (Anchor Relative).
      *
      * @param touch A given touch.
@@ -1691,6 +1778,7 @@ public:
       /// @{
     /// @name component functions
     /**
+	通过字符串获取组件
      * Gets a component by its name.
      *
      * @param name A given name of component.
@@ -1699,6 +1787,7 @@ public:
     Component* getComponent(const std::string& name);
 
     /**
+	增加组件
      * Adds a component.
      *
      * @param component A given component.
@@ -1707,6 +1796,7 @@ public:
     virtual bool addComponent(Component *component);
 
     /**
+	通过字符串移除组件
      * Removes a component by its name.
      *
      * @param name A given name of component.
@@ -1715,6 +1805,7 @@ public:
     virtual bool removeComponent(const std::string& name);
 
     /** 
+	通过组件指针移除组件
      * Removes a component by its pointer.
      *
      * @param component A given component.
@@ -1722,6 +1813,7 @@ public:
      */
     virtual bool removeComponent(Component *component);
     /**
+	删除所有组件
      * Removes all components
      */
     virtual void removeAllComponents();
@@ -1729,6 +1821,7 @@ public:
     
     // overrides
     /**
+	获取透明度
      * Return the node's opacity.
      * @return A GLubyte value.
      */
@@ -1741,6 +1834,7 @@ public:
      */
     virtual GLubyte getDisplayedOpacity() const;
     /**
+	设置透明度
      * Change node opacity.
      * @param opacity A GLubyte opacity value.
      */
@@ -1762,6 +1856,7 @@ public:
     virtual void setCascadeOpacityEnabled(bool cascadeOpacityEnabled);
 
     /**
+	获取颜色值
      * Query node's color value.
      * @return A Color3B color value.
      */
@@ -1772,6 +1867,7 @@ public:
      */
     virtual const Color3B& getDisplayedColor() const;
     /**
+	设置颜色值
      * Change the color of node.
      * @param color A Color3B color value.
      */
@@ -1805,41 +1901,49 @@ public:
     virtual bool isOpacityModifyRGB() const;
 
     /**
+	设置onEnter回调函数
      * Set the callback of event onEnter.
      * @param callback A std::function<void()> callback.
      */
     void setOnEnterCallback(const std::function<void()>& callback) { _onEnterCallback = callback; }
     /**
+	获取onEnter回调函数
      * Get the callback of event onEnter.
      * @return A std:function<void()> callback.
      */
     const std::function<void()>& getOnEnterCallback() const { return _onEnterCallback; }
     /**
+	设置onExit回调函数
      * Set the callback of event onExit.
      * @param callback A std::function<void()> callback.
      */
     void setOnExitCallback(const std::function<void()>& callback) { _onExitCallback = callback; }
     /**
+	获取onExit回调函数
      * Get the callback of event onExit.
      * @return A std::function<void()>.
      */
     const std::function<void()>& getOnExitCallback() const { return _onExitCallback; }
     /**
+	设置EnterTransitionDidFinish回调函数
      * Set the callback of event EnterTransitionDidFinish.
      * @param callback A std::function<void()> callback.
      */
     void setonEnterTransitionDidFinishCallback(const std::function<void()>& callback) { _onEnterTransitionDidFinishCallback = callback; }
     /**
+	获取EnterTransitionDidFinish回调函数
      * Get the callback of event EnterTransitionDidFinish.
      * @return std::function<void()>
      */
     const std::function<void()>& getonEnterTransitionDidFinishCallback() const { return _onEnterTransitionDidFinishCallback; }
     /**
+	设置ExitTransitionDidStart回调函数
      * Set the callback of event ExitTransitionDidStart.
      * @param callback A std::function<void()> callback.
      */
     void setonExitTransitionDidStartCallback(const std::function<void()>& callback) { _onExitTransitionDidStartCallback = callback; }
     /**
+	获取ExitTransitionDidStart回调函数
      * Get the callback of event ExitTransitionDidStart.
      * @return std::function<void()>
      */
@@ -1868,10 +1972,10 @@ protected:
     /// lazy allocs
     void childrenAlloc(void);
     
-    /// helper that reorder a child
+    //插入子节点
     void insertChild(Node* child, int z);
 
-    /// Removes a child, call child->onExit(), do cleanup, remove it from children array.
+    //移除字节点
     void detachChild(Node *child, ssize_t index, bool doCleanup);
 
     /// Convert cocos2d coordinates to UI windows coordinate.
@@ -1902,32 +2006,31 @@ private:
     
 protected:
 
-    float _rotationX;               ///< rotation on the X-axis
-    float _rotationY;               ///< rotation on the Y-axis
-
+    float _rotationX;               //X 旋转
+    float _rotationY;               //Y 旋转
     // rotation Z is decomposed in 2 to simulate Skew for Flash animations
     float _rotationZ_X;             ///< rotation angle on Z-axis, component X
     float _rotationZ_Y;             ///< rotation angle on Z-axis, component Y
     
     Quaternion _rotationQuat;       ///rotation using quaternion, if _rotationZ_X == _rotationZ_Y, _rotationQuat = RotationZ_X * RotationY * RotationX, else _rotationQuat = RotationY * RotationX
 
-    float _scaleX;                  ///< scaling factor on x-axis
-    float _scaleY;                  ///< scaling factor on y-axis
-    float _scaleZ;                  ///< scaling factor on z-axis
+    float _scaleX;                  //X 缩小
+    float _scaleY;                  //Y 缩小
+    float _scaleZ;                  //Z 缩小
 
-    Vec2 _position;                 ///< position of the node
+    Vec2 _position;                 //位置
     float _positionZ;               ///< OpenGL real Z position
     Vec2 _normalizedPosition;
     bool _usingNormalizedPosition;
     bool _normalizedPositionDirty;
 
-    float _skewX;                   ///< skew angle on x-axis
-    float _skewY;                   ///< skew angle on y-axis
+    float _skewX;                   //X 斜角
+    float _skewY;                   //Y 斜角
 
-    Vec2 _anchorPointInPoints;      ///< anchor point in points
-    Vec2 _anchorPoint;              ///< anchor point normalized (NOT in points)
+    Vec2 _anchorPointInPoints;      //锚点位置
+    Vec2 _anchorPoint;              //锚点
 
-    Size _contentSize;              ///< untransformed size of the node
+    Size _contentSize;              //未转换大小
     bool _contentSizeDirty;         ///< whether or not the contentSize is dirty
 
     Mat4 _modelViewTransform;       ///< ModelView transform of the Node.
@@ -1944,8 +2047,8 @@ protected:
 #if CC_LITTLE_ENDIAN
     union {
         struct {
-            std::uint32_t _orderOfArrival;
-            std::int32_t _localZOrder;
+            std::uint32_t _orderOfArrival;//全局ZOrder，_globalZOrder>_localZOrder>_orderOfArrival
+            std::int32_t _localZOrder;//本地ZOrder,_globalZOrder>_localZOrder>_orderOfArrival
         };
         std::int64_t _localZOrder$Arrival;
     };
@@ -1959,37 +2062,36 @@ protected:
     };
 #endif
 
-    float _globalZOrder;            ///< Global order used to sort the node
+    float _globalZOrder;            //全局ZOrder,_globalZOrder>_localZOrder>_orderOfArrival
 
-    static std::uint32_t s_globalOrderOfArrival;
+    static std::uint32_t s_globalOrderOfArrival;//全局ZOrder辅助
 
-    Vector<Node*> _children;        ///< array of children nodes
-    Node *_parent;                  ///< weak reference to parent node
+    Vector<Node*> _children;        //子节点数组
+    Node *_parent;                  //父节点
     Director* _director;            //cached director pointer to improve rendering performance
-    int _tag;                       ///< a tag. Can be any number you assigned just to identify this node
+    int _tag;                       //标签
     
-    std::string _name;              ///<a string label, an user defined string to identify this node
-    size_t _hashOfName;             ///<hash value of _name, used for speed in getChildByName
+    std::string _name;              //标签
+    size_t _hashOfName;             //加快字符标签比较速度
 
-    void *_userData;                ///< A user assigned void pointer, Can be point to any cpp object
+    void *_userData;                //存储数据指针
     Ref *_userObject;               ///< A user assigned Object
 
-    GLProgramState *_glProgramState; ///< OpenGL Program State
+    GLProgramState *_glProgramState; //OpenGL程序状态
 
-    Scheduler *_scheduler;          ///< scheduler used to schedule timers and updates
+    Scheduler *_scheduler;          //调度器
 
-    ActionManager *_actionManager;  ///< a pointer to ActionManager singleton, which is used to handle all the actions
+    ActionManager *_actionManager;  //动作管理者
 
-    EventDispatcher* _eventDispatcher;  ///< event dispatcher used to dispatch all kinds of events
+    EventDispatcher* _eventDispatcher;  //事件管理
 
-    bool _running;                  ///< is running
+    bool _running;                  //是否正在运行,onEnter触发
 
-    bool _visible;                  ///< is this node visible
+    bool _visible;                  //是否显示
 
-    bool _ignoreAnchorPointForPosition; ///< true if the Anchor Vec2 will be (0,0) when you position the Node, false otherwise.
-                                          ///< Used by Layer and Scene.
+    bool _ignoreAnchorPointForPosition; //是否忽略瞄点
 
-    bool _reorderChildDirty;          ///< children order dirty flag
+    bool _reorderChildDirty;          //脏标记
     bool _isTransitionFinished;       ///< flag to indicate whether the transition was finished
 
 #if CC_ENABLE_SCRIPT_BINDING
@@ -1998,7 +2100,7 @@ protected:
     ccScriptType _scriptType;         ///< type of script binding, lua or javascript
 #endif
     
-    ComponentContainer *_componentContainer;        ///< Dictionary of components
+    ComponentContainer *_componentContainer;        //组件字典
     
     // opacity controls
     GLubyte     _displayedOpacity;
