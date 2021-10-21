@@ -119,14 +119,15 @@ class CC_GUI_DLL Layout : public Widget, public LayoutProtocol
     
 public:
     /**
+	对齐模式
      * Layout type, default is ABSOLUTE.
      */
     enum class Type
     {
-        ABSOLUTE,
-        VERTICAL,
-        HORIZONTAL,
-        RELATIVE
+        ABSOLUTE,//绝对
+        VERTICAL,//水平
+        HORIZONTAL,//垂直
+        RELATIVE//相对
     };
     
     /**
@@ -168,6 +169,7 @@ public:
     static Layout* create();
     
     /**
+	设置背景图片的路径，读取方式（散图还是图集）
      * Sets a background image for layout.
      *
      * @param fileName image file path.
@@ -176,6 +178,7 @@ public:
     void setBackGroundImage(const std::string& fileName,TextureResType texType = TextureResType::LOCAL);
     
     /**
+	设置背景图片九宫格大小
      * Sets a background image capinsets for layout, it only affects the scale9 enabled background image
      *
      * @param capInsets  The capInsets in Rect.
@@ -184,12 +187,14 @@ public:
     void setBackGroundImageCapInsets(const Rect& capInsets);
     
     /**
+	获取背景图片九宫格大小
      * Query background image's capInsets size.
      *@return The background image capInsets.
      */
     const Rect& getBackGroundImageCapInsets()const;
     
     /**
+	设置背景图片颜色类型
      * Sets Color Type for layout's background
      *
      * @param type   @see `BackGroundColorType`
@@ -197,12 +202,14 @@ public:
     void setBackGroundColorType(BackGroundColorType type);
     
     /**
+	获取背景颜色类型
      * Query the layout's background color type.
      *@return The layout's background color type.
      */
     BackGroundColorType getBackGroundColorType()const;
     
     /**
+	设置是否开启背景图片九宫格模式
      * Enable background image scale9 rendering.
      *
      * @param enabled  True means enable scale9 rendering for background image, false otherwise.
@@ -210,12 +217,14 @@ public:
     void setBackGroundImageScale9Enabled(bool enabled);
     
     /**
+	返回是否开始背景图片九宫格模式
      * Query background image scale9 enable status.
      *@return Whether background image is scale9 enabled or not.
      */
     bool isBackGroundImageScale9Enabled()const;
     
     /**
+	设置背景图片颜色
      * Set background color for layout
      * The color only applies to layout when it's color type is BackGroundColorType::SOLIDE
      *
@@ -224,6 +233,7 @@ public:
     void setBackGroundColor(const Color3B &color);
     
     /**
+	获取背景颜色
      * Query the layout's background color.
      *@return Background color in Color3B.
      */
@@ -251,6 +261,7 @@ public:
     const Color3B& getBackGroundEndColor()const;
     
     /**
+	设置背景透明度
      * Sets background color opacity of layout.
      *
      * @param opacity The opacity in `GLubyte`.
@@ -258,6 +269,7 @@ public:
     void setBackGroundColorOpacity(GLubyte opacity);
     
     /**
+	获取背景透明度
      * Get the layout's background color opacity.
      *@return Background color opacity value.
      */
@@ -278,35 +290,41 @@ public:
     const Vec2& getBackGroundColorVector()const;
     
     /**
+	设置背景图片颜色
      * Set layout's background image color.
      *@param color Background color value in `Color3B`.
      */
     void setBackGroundImageColor(const Color3B& color);
     
     /**
+	设置背景图片透明度
      * Set opacity of background image.
      *@param opacity Background image opacity in GLubyte.
      */
     void setBackGroundImageOpacity(GLubyte opacity);
     
     /**
+	获取背景图片颜色值
      * Get color of layout's background image.
      *@return Layout's background image color.
      */
     const Color3B& getBackGroundImageColor()const;
     
     /**
+	获取背景图片透明度
      * Get the opacity of layout's background image.
      * @return The opacity of layout's background image.
      */
     GLubyte getBackGroundImageOpacity()const;
     
     /**
+	删除背景图片
      * Remove the background image of layout.
      */
     void removeBackGroundImage();
     
     /**
+	获取背景图片纹理大小
      * Gets background image texture size.
      *
      * @return background image texture size.
@@ -314,6 +332,7 @@ public:
     const Size& getBackGroundImageTextureSize() const;
     
     /**
+	是否开启裁切
      * Toggle layout clipping.
      *
      * If you do need clipping, you pass true to this function.
@@ -324,6 +343,7 @@ public:
     
     
     /**
+	设置裁切类型
      * Change the clipping type of layout.
      * On default, the clipping type is `ClippingType::STENCIL`.
      * @see `ClippingType`
@@ -332,12 +352,14 @@ public:
     void setClippingType(ClippingType type);
 
     /**
+	获取裁切类型
      *
      * @see `setClippingType(ClippingType)`
      */
     ClippingType getClippingType()const;
     
     /**
+	获取是否裁切
      * Gets if layout is clipping enabled.
      *
      * @return if layout is clipping enabled.
@@ -345,23 +367,26 @@ public:
     virtual bool isClippingEnabled()const;
     
     /**
+	获取描述
      * Returns the "class name" of widget.
      */
     virtual std::string getDescription() const override;
     
     /**
+	设置对齐模式
      * Change the layout type.
      *@param type Layout type.
      */
     virtual void setLayoutType(Type type);
     
     /**
+	获取对齐模式
      * Query layout type.
      *@return Get the layout type.
      */
     virtual  Type getLayoutType() const;
 
-    
+    //添加子节点
     virtual void addChild(Node* child)override;
     virtual void addChild(Node * child, int localZOrder)override;
     /**
@@ -375,18 +400,20 @@ public:
      */
     virtual void addChild(Node* child, int localZOrder, int tag) override;
     virtual void addChild(Node* child, int localZOrder, const std::string &name) override;
-    
+    //重写visit(Renderer*,Mat4&,uint32_t)
     virtual void visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t parentFlags) override;
-
+	//删除子节点并且是否调用cleanup()
     virtual void removeChild(Node* child, bool cleanup = true) override;
     
     /**
+	删除所有子节点
      * Removes all children from the container with a cleanup.
      *
      * @see `removeAllChildrenWithCleanup(bool)`
      */
     virtual void removeAllChildren() override;
     /**
+	删除所有子节点并且是否cleanup()
      * Removes all children from the container, and do a cleanup to all running actions depending on the cleanup parameter.
      *
      * @param cleanup   true if all running actions on all children nodes should be cleanup, false otherwise.
@@ -396,25 +423,29 @@ public:
     virtual void removeAllChildrenWithCleanup(bool cleanup) override;
 
     /**
+	重新对齐
      * force refresh widget layout
      */
     virtual void forceDoLayout();
     
     /**
+	对齐脏标签
      * request to refresh widget layout
      */
     virtual void requestDoLayout();
     
     /**
+	重写onEnter
      * @lua NA
      */
     virtual void onEnter() override;
     
     /**
+	重写onExit
      * @lua NA
      */
     virtual void onExit() override;
-    
+    //重写setGlobalZOrder,除重写设置Node:setGlobalZOrder,还设置ClippingStencil:setGlobalZOrder,children:setGlobalZOrder,为什么不设置protectedChildren:setGlobalZOrder?
     virtual void setGlobalZOrder(float globalZOrder) override;
     
     /**
@@ -603,17 +634,16 @@ protected:
     bool checkFocusEnabledChild()const;
     
 protected:
-    
     //background
-    bool _backGroundScale9Enabled;
-    Scale9Sprite* _backGroundImage;
-    std::string _backGroundImageFileName;
-    Rect _backGroundImageCapInsets;
-    BackGroundColorType _colorType;
-    TextureResType _bgImageTexType;
-    Size _backGroundImageTextureSize;
-    Color3B _backGroundImageColor;
-    GLubyte _backGroundImageOpacity;
+    bool _backGroundScale9Enabled;//开启背景图片九宫格
+    Scale9Sprite* _backGroundImage;//背景图片
+    std::string _backGroundImageFileName;//背景图片文件名称
+    Rect _backGroundImageCapInsets;//背景图片九宫格位置
+    BackGroundColorType _colorType;//背景颜色类型
+    TextureResType _bgImageTexType;//背景图片纹理类型
+    Size _backGroundImageTextureSize;//背景图片纹理大小
+    Color3B _backGroundImageColor;//背景图片颜色值
+    GLubyte _backGroundImageOpacity;//背景图片透明度
 
     LayerColor* _colorRender;
     LayerGradient* _gradientRender;
@@ -624,27 +654,27 @@ protected:
     GLubyte _cOpacity;
     
     //clipping
-    bool _clippingEnabled;
-    Type _layoutType;
-    ClippingType _clippingType;
-    DrawNode* _clippingStencil;
+    bool _clippingEnabled;//是否裁切
+    Type _layoutType;//自动布局子节点模式：无、水平、垂直、网格
+    ClippingType _clippingType;//裁切类型
+    DrawNode* _clippingStencil;//裁切画笔
     bool _scissorOldState;
     Rect _clippingOldRect;
     Rect _clippingRect;
-    Layout* _clippingParent;
-    bool _clippingRectDirty;
+    Layout* _clippingParent;//裁切父节点
+    bool _clippingRectDirty;//裁切脏标记
     
     //clipping
     StencilStateManager *_stencilStateManager;
-
-    GroupCommand _groupCommand;
-    CustomCommand _beforeVisitCmdStencil;
-    CustomCommand _afterDrawStencilCmd;
-    CustomCommand _afterVisitCmdStencil;
-    CustomCommand _beforeVisitCmdScissor;
-    CustomCommand _afterVisitCmdScissor;
+	//渲染命令
+    GroupCommand	_groupCommand;
+    CustomCommand	_beforeVisitCmdStencil;
+    CustomCommand	_afterDrawStencilCmd;
+    CustomCommand	_afterVisitCmdStencil;
+    CustomCommand	_beforeVisitCmdScissor;
+    CustomCommand	_afterVisitCmdScissor;
     
-    bool _doLayoutDirty;
+    bool _doLayoutDirty;//布局模式藏标记
     bool _isInterceptTouch;
     
     //whether enable loop focus or not

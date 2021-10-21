@@ -80,6 +80,7 @@ class CC_GUI_DLL Widget : public ProtectedNode, public LayoutParameterProtocol
 {
 public:
     /**
+	中心点方向
      * Widget focus direction.
      */
     enum class FocusDirection
@@ -91,6 +92,7 @@ public:
     };
     
     /**
+	位置对齐类型
      * Widget position type for layout.
      */
     enum class PositionType
@@ -100,6 +102,7 @@ public:
     };
     
     /**
+	大小对齐类型
      * Widget size type for layout.
      */
     enum class SizeType
@@ -109,6 +112,7 @@ public:
     };
     
     /**
+	触摸类型
      * Touch event type.
      */
     enum class TouchEventType
@@ -120,6 +124,7 @@ public:
     };
     
     /**
+	纹理类型
      * Texture resource type.
      * - LOCAL:  It means the texture is loaded from image.
      * - PLIST: It means the texture is loaded from texture atlas.
@@ -131,6 +136,7 @@ public:
     };
     
     /**
+	明亮样式
      * Widget bright style.
      */
     enum class BrightStyle
@@ -142,14 +148,17 @@ public:
 
     
     /**
+	触摸回调
      * Widget touch event callback.
      */
     typedef std::function<void(Ref*,Widget::TouchEventType)> ccWidgetTouchCallback;
     /**
+	单点回调
      * Widget click event callback.
      */
     typedef std::function<void(Ref*)> ccWidgetClickCallback;
     /**
+	触摸2回调
      * Widget custom event callback.
      * It is mainly used together with Cocos Studio.
      */
@@ -173,6 +182,7 @@ public:
     static Widget* create();
 
     /**
+	是否开启明亮模式
      * Sets whether the widget is enabled
      * 
      * true if the widget is enabled, widget may be touched , false if the widget is disabled, widget cannot be touched.
@@ -186,6 +196,7 @@ public:
     virtual void setEnabled(bool enabled);
 
     /**
+	返回明亮模式
      * Determines if the widget is enabled or not.
      *
      * @return true if the widget is enabled, false if the widget is disabled.
@@ -193,6 +204,7 @@ public:
     bool isEnabled() const;
 
     /**
+	设置明亮模式
      * Sets whether the widget is bright
      *
      * The default value is true, a widget is default to bright
@@ -202,6 +214,7 @@ public:
     void setBright(bool bright);
 
     /**
+	是否开启明亮模式
      * Determines if the widget is bright
      *
      * @return true if the widget is bright, false if the widget is dark.
@@ -209,6 +222,7 @@ public:
     bool isBright() const;
 
     /**
+	设置开启触摸
      * Sets whether the widget is touch enabled.
      *
      * The default value is false, a widget is default to touch disabled.
@@ -218,6 +232,7 @@ public:
     virtual void setTouchEnabled(bool enabled);
 
     /**
+	设置明亮模式
      * To set the bright style of widget.
      *
      * @see BrightStyle
@@ -227,6 +242,7 @@ public:
     void setBrightStyle(BrightStyle style);
 
     /**
+	是否开启触摸
      * Determines if the widget is touch enabled
      *
      * @return true if the widget is touch enabled, false if the widget is touch disabled.
@@ -234,6 +250,7 @@ public:
     bool isTouchEnabled() const;
 
     /**
+	是否明亮
      * Determines if the widget is highlighted
      *
      * @return true if the widget is highlighted, false if the widget is not highlighted.
@@ -241,6 +258,7 @@ public:
     bool isHighlighted() const;
 
     /**
+	设置明亮模式
      * Sets whether the widget is highlighted
      *
      * The default value is false, a widget is default to not highlighted
@@ -299,6 +317,7 @@ public:
     float getTopBoundary() const;
 
     /**
+	重写visit(Renderer*,Mat4&,uint32_t)
      * @js NA
      */
     virtual void visit(cocos2d::Renderer *renderer, const Mat4 &parentTransform, uint32_t parentFlags) override;
@@ -308,17 +327,20 @@ public:
      */
     CC_DEPRECATED_ATTRIBUTE void addTouchEventListener(Ref* target,SEL_TouchEvent selector);
     /**
+	设置触摸回调函数
      * Set a callback to touch vent listener.
      *@param callback  The callback in `ccWidgetEventCallback.`
      */
     void addTouchEventListener(const ccWidgetTouchCallback& callback);
     
     /**
+	设置单点回调函数
      * Set a click event handler to the widget.
      * @param callback The callback in `ccWidgetClickCallback`.
      */
     void addClickEventListener(const ccWidgetClickCallback& callback);
     /**
+	设置触摸2回调函数
      * Set a event handler to the widget in order to use cocostudio editor and framework
      * @param callback The callback in `ccWidgetEventCallback`.
      * @lua NA
@@ -327,6 +349,7 @@ public:
     /**/
 
     /**
+	重写setPosition(int,int)
      * Changes the position (x,y) of the widget in OpenGL coordinates
      *
      * Usually we use p(x,y) to compose a Vec2 object.
@@ -542,6 +565,7 @@ public:
     const Vec2& getSizePercent();
 
     /**
+	是否点击中
      * Checks a point is in widget's content space.
      * This function is used for determining touch area of widget.
      *
@@ -553,6 +577,7 @@ public:
     virtual bool hitTest(const Vec2 &pt, const Camera* camera, Vec3 *p) const;
 
     /**
+	触摸开始
      * A callback which will be called when touch began event is issued.
      *@param touch The touch info.
      *@param unusedEvent The touch event info.
@@ -561,6 +586,7 @@ public:
     virtual bool onTouchBegan(Touch *touch, Event *unusedEvent);
 
     /**
+	触摸移动
      * A callback which will be called when touch moved event is issued.
      *@param touch The touch info.
      *@param unusedEvent The touch event info.
@@ -568,6 +594,7 @@ public:
     virtual void onTouchMoved(Touch *touch, Event *unusedEvent);
 
     /**
+	触摸结束
      * A callback which will be called when touch ended event is issued.
      *@param touch The touch info.
      *@param unusedEvent The touch event info.
@@ -575,6 +602,7 @@ public:
     virtual void onTouchEnded(Touch *touch, Event *unusedEvent);
 
     /**
+	触摸取消
      * A callback which will be called when touch cancelled event is issued.
      *@param touch The touch info.
      *@param unusedEvent The touch event info.
@@ -608,6 +636,7 @@ public:
 
 
     /**
+	忽略
      * Toggle whether ignore user defined content size for widget.
      * Set true will ignore user defined content size which means 
      * the widget size is always equal to the return value of `getVirtualRendererSize`.
@@ -624,6 +653,7 @@ public:
     bool isIgnoreContentAdaptWithSize() const;
 
     /**
+	获取世界坐标位置
      * Gets position of widget in world space.
      *
      * @return Position of widget in world space.
@@ -648,27 +678,32 @@ public:
     
 
     /**
+	获取描述
      * Returns the string representation of widget class name
      * @return get the class description.
      */
     virtual std::string getDescription() const override;
 
     /**
+	克隆
      * Create a new widget copy of the original one.
      * @return A cloned widget copy of original.
      */
     Widget* clone();
     /**
+	重写onEnter
      * @lua NA
      */
     virtual void onEnter() override;
     
     /**
+	重写onExit
      * @lua NA
      */
     virtual void onExit() override;
 
     /**
+	更新大小位置
      * Update all children's contents size and position recursively.
      * @see `updateSizeAndPosition(const Size&)`
      */
@@ -680,12 +715,14 @@ public:
     void updateSizeAndPosition(const Size& parentSize);
     
     /**
+	设置动作标志
      * Set the tag of action.
      *@param tag  A integer tag value.
      */
     void setActionTag(int tag);
 
     /**
+	获取动作标志
      * Get the action tag.
      *@return Action tag.
      */
@@ -707,6 +744,7 @@ public:
     bool isPropagateTouchEvents()const;
     
     /**
+	是否吞噬事件
      * Toggle widget swallow touch option.
      * @brief Specify widget to swallow touches or not
      * @param swallow True to swallow touch, false otherwise.
@@ -715,6 +753,7 @@ public:
     void setSwallowTouches(bool swallow);
     
     /**
+	获取是否吞噬事件
      * Return whether the widget is swallowing touch or not
      * @return Whether touch is swallowed.
      * @since v3.3
@@ -722,24 +761,27 @@ public:
     bool isSwallowTouches()const;
     
     /**
+	是否关注点
      * Query whether widget is focused or not.
      *@return  whether the widget is focused or not
      */
     bool isFocused()const;
     
     /**
+	设置关注
      * Toggle widget focus status.
      *@param focus  pass true to let the widget get focus or pass false to let the widget lose focus
      */
     void setFocused(bool focus);
     
     /**
+	是否关注
      * Query widget's focus enable state.
      *@return true represent the widget could accept focus, false represent the widget couldn't accept focus
      */
     bool isFocusEnabled()const;
     
-    /**
+    /**设置是否关注
      * Allow widget to accept focus.
      *@param enable pass true/false to enable/disable the focus ability of a widget
      */
@@ -804,6 +846,7 @@ public:
     bool isUnifySizeEnabled()const;
 
     /**
+	设置回调函数名
      * Set callback name.
      *@param callbackName A string representation of callback name.
      */
@@ -811,18 +854,21 @@ public:
 
 
     /**
+	获取回调函数名
      * Query callback name.
      *@return The callback name.
      */
     const std::string& getCallbackName() const{ return _callbackName; }
     
     /**
+	设置回调函数类型
      * Set callback type.
      * @param callbackType A string representation of callback type.
      */
     void setCallbackType(const std::string& callbackType) { _callbackType = callbackType; }
 
     /**
+	获取回调函数类型
      * Query callback type.
      *@return Callback type string.
      */
@@ -931,46 +977,46 @@ protected:
     LayoutComponent* getOrCreateLayoutComponent();
 
 protected:
-    bool _usingLayoutComponent;
+    bool _usingLayoutComponent;//对齐组件
     bool _unifySize;
     bool _enabled;
     bool _bright;
-    bool _touchEnabled;
-    bool _highlight;
+    bool _touchEnabled;//是否开启点击事件
+    bool _highlight;//是否高亮
     bool _affectByClipping;
-    bool _ignoreSize;
+    bool _ignoreSize;//忽略大小
     bool _propagateTouchEvents;
 
-    BrightStyle _brightStyle;
+    BrightStyle _brightStyle;//状态类型
     SizeType _sizeType;
     PositionType _positionType;
 
     //used for search widget by action tag in UIHelper class
-    int _actionTag;
+    int _actionTag;//动作标志
 
-    Size _customSize;
+    Size _customSize;//自定义大小
 
-    Vec2 _sizePercent;
-    Vec2 _positionPercent;
+    Vec2 _sizePercent;//大小百分比
+    Vec2 _positionPercent;//位置百分比
 
-    bool _hitted;
+    bool _hitted;//是否击中
     // weak reference of the camera which made the widget passed the hit test when response touch begin event
     // it's useful in the next touch move/end events
-    const Camera *_hittedByCamera;
-    EventListenerTouchOneByOne* _touchListener;
-    Vec2 _touchBeganPosition;
-    Vec2 _touchMovePosition;
-    Vec2 _touchEndPosition;
+    const Camera *_hittedByCamera;//相机
+    EventListenerTouchOneByOne* _touchListener;//单点触摸
+    Vec2 _touchBeganPosition;//开始点击位置
+    Vec2 _touchMovePosition;//移动点击位置
+    Vec2 _touchEndPosition;//结束点击位置
 
-    bool _flippedX;
-    bool _flippedY;
+    bool _flippedX;//X斜角度
+    bool _flippedY;//Y斜角度
 
     //use map to enable switch back and forth for user layout parameters
-    Map<int,LayoutParameter*> _layoutParameterDictionary;
+    Map<int,LayoutParameter*> _layoutParameterDictionary;//对齐字典
     LayoutParameter::Type _layoutParameterType;
 
-    bool _focused;
-    bool _focusEnabled;
+    bool _focused;//是否瞄准
+    bool _focusEnabled;//是否开启瞄准
     /**
      * store the only one focused widget
      */
@@ -989,12 +1035,12 @@ protected:
     #elif _MSC_VER >= 1400 //vs 2005 or higher
     #pragma warning (pop)
     #endif
-    ccWidgetTouchCallback _touchEventCallback;
-    ccWidgetClickCallback _clickEventListener;
-    ccWidgetEventCallback _ccEventCallback;
+    ccWidgetTouchCallback _touchEventCallback;//多点触摸回调
+    ccWidgetClickCallback _clickEventListener;//单点触摸回调
+    ccWidgetEventCallback _ccEventCallback;//触摸回调
     
-    std::string _callbackType;
-    std::string _callbackName;
+    std::string _callbackType;//回调类型
+    std::string _callbackName;//回调名称
 private:
     class FocusNavigationController;
     static FocusNavigationController* _focusNavigationController;

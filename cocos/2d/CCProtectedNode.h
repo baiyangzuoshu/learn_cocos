@@ -41,6 +41,7 @@ NS_CC_BEGIN
  */
 
 /**
+Node扩展，_protectedChildren主要是受保护节点数组添加
  *@brief A inner node type mainly used for UI module.
  * It is useful for composing complex node type and it's children are protected.
  */
@@ -48,6 +49,7 @@ class  CC_DLL ProtectedNode : public Node
 {
 public:
     /**
+	二段构建函数
      * Creates a ProtectedNode with no argument.
      *@return A instance of ProtectedNode.
      */
@@ -57,6 +59,7 @@ public:
     /// @name Children and Parent
     
     /**
+	添加受保护节点
      * Adds a child to the container with z-order as 0.
      *
      * If the child is added to a 'running' node, then 'onEnter' and 'onEnterTransitionDidFinish' will be called immediately.
@@ -84,6 +87,7 @@ public:
      */
     virtual void addProtectedChild(Node* child, int localZOrder, int tag);
     /**
+	根据tag获取受保护节点
      * Gets a child from the container with its tag.
      *
      * @param tag   An identifier to find the child node.
@@ -95,6 +99,7 @@ public:
     ////// REMOVES //////
     
     /**
+	删除受保护节点以及是否调用cleanup()
      * Removes a child from the container. It will also cleanup all running actions depending on the cleanup parameter.
      *
      * @param child     The child node which will be removed.
@@ -111,12 +116,14 @@ public:
     virtual void removeProtectedChildByTag(int tag, bool cleanup = true);
     
     /**
+	删除所有受保护节点
      * Removes all children from the container with a cleanup.
      *
      * @see `removeAllChildrenWithCleanup(bool)`.
      */
     virtual void removeAllProtectedChildren();
     /**
+	删除所有受保护节点以及调用cleanup()
      * Removes all children from the container, and do a cleanup to all running actions depending on the cleanup parameter.
      *
      * @param cleanup   true if all running actions on all children nodes should be cleanup, false otherwise.
@@ -126,6 +133,7 @@ public:
     virtual void removeAllProtectedChildrenWithCleanup(bool cleanup);
     
     /**
+	受保护节点排序渲染
      * Reorders a child according to a new z value.
      *
      * @param child     An already added child node. It MUST be already added.
@@ -134,6 +142,7 @@ public:
     virtual void reorderProtectedChild(Node * child, int localZOrder);
     
     /**
+	排序所有受保护节点
      * Sorts the children array once before drawing, instead of every time when a child is added or reordered.
      * This approach can improves the performance massively.
      * @note Don't call this manually unless a child added needs to be removed in the same frame
@@ -143,6 +152,7 @@ public:
     /// @} end of Children and Parent
     
     /**
+	重写Node:visit(Renderer*,Mat4&,uint32_t),因为需要处理受保护节点渲染。凡是和_protectedChildren受保护节点数组有关的Node函数都需要重写
      * @js NA
      */
     virtual void visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t parentFlags) override;
