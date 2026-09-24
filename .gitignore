@@ -1,0 +1,22 @@
+# Cocos Creator 2.4.15 安装包运行文件
+/2.4.15/CocosCreator.exe
+/2.4.15/*.dll
+/2.4.15/*.pak
+/2.4.15/*.bin
+/2.4.15/vk_swiftshader_icd.json
+/2.4.15/locales/
+/2.4.15/swiftshader/
+
+# Creator 编辑器打包资源和随附工具（引擎源码保留）
+/2.4.15/resources/app.asar
+/2.4.15/resources/default_app.asar
+/2.4.15/resources/app.asar.unpacked/
+/2.4.15/resources/static/
+/2.4.15/resources/templates/
+/2.4.15/resources/utils/
+/2.4.15/resources/builtin/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+Desktop.ini
